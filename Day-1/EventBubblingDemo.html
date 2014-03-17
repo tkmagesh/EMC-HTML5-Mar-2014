@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Event Bubbling</title>
+	<style type="text/css">
+		div{
+			margin : 20px;
+			padding: 30px;
+		}
+		#first{
+			border : 2px solid blue;
+			background-color: lightblue;
+
+		}
+		#second {
+			border : 2px solid red;
+			background-color: lightpink;
+		}
+		#third{
+			border : 2px solid green;
+			background-color: lightgreen;
+		}
+		span{
+			margin: 20px;
+			font-size: 22pt;
+		}
+	</style>
+	<script>
+		window.addEventListener("DOMContentLoaded",function(){
+			document.getElementById("first").addEventListener("click",onNodeClick);
+			/*document.getElementById("second").addEventListener("click",onNodeClick);
+			document.getElementById("third").addEventListener("click",onNodeClick);
+			document.getElementById("spanText").addEventListener("click",onNodeClick);
+			document.body.addEventListener("click",onNodeClick);
+			document.documentElement.addEventListener("click",onNodeClick);*/
+		});
+		function onNodeClick(evt){
+			console.dir(evt);
+			console.log("a node with id ", this.id, "is clicked");
+		}
+	</script>
+</head>
+<body>
+	<div id="first">
+		<div id="second">
+			<div id="third"><span id="spanText">This is the text</span></div>
+		</div>
+	</div>
+</body>
+</html>

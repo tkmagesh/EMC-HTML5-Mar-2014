@@ -33,15 +33,17 @@
 		  ,	ulTaskList = document.getElementById("ulTaskList")
           , newTaskNode = document.createElement("li");
         newTaskNode.innerHTML = task;
-        newTaskNode.addEventListener("click",onTaskItemClick);
+        //newTaskNode.addEventListener("click",onTaskItemClick);
         ulTaskList.appendChild(newTaskNode);
 	}
 	function init(){
 		document.getElementById("btnAddTask").addEventListener("click",onBtnAddTaskClick);
 		document.getElementById("btnRemoveCompleted").addEventListener("click",onBtnRemoveCompltedClick);
-		var taskNodes = document.getElementById("ulTaskList").children;
+		document.getElementById("ulTaskList").addEventListener("click",onTaskItemClick);
+
+		/*var taskNodes = document.getElementById("ulTaskList").children;
 		for(var i=0;i<taskNodes.length;i++)
-			taskNodes[i].addEventListener("click",onTaskItemClick);
+			taskNodes[i].addEventListener("click",onTaskItemClick);*/
 	}
 
 	function onBtnRemoveCompltedClick(){
@@ -50,12 +52,16 @@
 				if (taskNodes[i].classList.contains("completed"))
 					taskNodes[i].remove();
 	}
-	function onTaskItemClick(){
-		if (this.classList.contains("completed")){
-			this.classList.remove("completed");
-		} else {
-			this.classList.add("completed");
+	function onTaskItemClick(e){
+
+		if (e.srcElement.nodeName === "LI"){
+			if (e.srcElement.classList.contains("completed")){
+				e.srcElement.classList.remove("completed");
+			} else {
+				e.srcElement.classList.add("completed");
+			}	
 		}
+		
 	}
 	//window.onload = init;
 	window.addEventListener("DOMContentLoaded",init);
