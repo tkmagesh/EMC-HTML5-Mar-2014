@@ -27,45 +27,8 @@
 		font-style: italic;
 	}
 	</style>
-	<script>
-	function onBtnAddTaskClick(){
-		var task = document.getElementById("txtTask").value
-		  ,	ulTaskList = document.getElementById("ulTaskList")
-          , newTaskNode = document.createElement("li");
-        newTaskNode.innerHTML = task;
-        //newTaskNode.addEventListener("click",onTaskItemClick);
-        ulTaskList.appendChild(newTaskNode);
-	}
-	function init(){
-		document.getElementById("btnAddTask").addEventListener("click",onBtnAddTaskClick);
-		document.getElementById("btnRemoveCompleted").addEventListener("click",onBtnRemoveCompltedClick);
-		document.getElementById("ulTaskList").addEventListener("click",onTaskItemClick);
-
-		/*var taskNodes = document.getElementById("ulTaskList").children;
-		for(var i=0;i<taskNodes.length;i++)
-			taskNodes[i].addEventListener("click",onTaskItemClick);*/
-	}
-
-	function onBtnRemoveCompltedClick(){
-		var taskNodes = document.getElementById("ulTaskList").children;
-			for(var i=taskNodes.length-1;i>= 0;i--)
-				if (taskNodes[i].classList.contains("completed"))
-					taskNodes[i].remove();
-	}
-	function onTaskItemClick(e){
-
-		if (e.srcElement.nodeName === "LI"){
-			if (e.srcElement.classList.contains("completed")){
-				e.srcElement.classList.remove("completed");
-			} else {
-				e.srcElement.classList.add("completed");
-			}	
-		}
-		
-	}
-	//window.onload = init;
-	window.addEventListener("DOMContentLoaded",init);
-	</script>
+	<script src="fadeOut.js"></script>
+	<script src="TaskManager.js"></script>
 </head>
 <body>
 	<h1>Task Manager</h1>
@@ -75,9 +38,7 @@
 		<input type="button" value="Add Task"  id="btnAddTask" >
 		<input type="button" value="Remove Completed" id="btnRemoveCompleted">
 		<ul id="ulTaskList">
-			<li>Task - 1</li>
-			<li>Task - 2</li>
-			<li>Task - 3</li>
+		
 		</ul>
 		<div id="divMessage"></div>
 	</div>

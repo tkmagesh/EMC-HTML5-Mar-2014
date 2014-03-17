@@ -29,15 +29,16 @@
 	<script>
 		window.addEventListener("DOMContentLoaded",function(){
 			document.getElementById("first").addEventListener("click",onNodeClick);
-			/*document.getElementById("second").addEventListener("click",onNodeClick);
+			document.getElementById("second").addEventListener("click",onNodeClick);
 			document.getElementById("third").addEventListener("click",onNodeClick);
 			document.getElementById("spanText").addEventListener("click",onNodeClick);
 			document.body.addEventListener("click",onNodeClick);
-			document.documentElement.addEventListener("click",onNodeClick);*/
+			document.documentElement.addEventListener("click",onNodeClick);
 		});
 		function onNodeClick(evt){
 			console.dir(evt);
 			console.log("a node with id ", this.id, "is clicked");
+			if (this.id === "second") evt.stopPropagation();
 		}
 	</script>
 </head>
