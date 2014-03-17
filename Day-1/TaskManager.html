@@ -20,14 +20,46 @@
 		border : 1px solid grey;
 		background-color: #efefef;
 	}
+	.completed{
+		color : red;
+		border-color: red;
+		text-decoration: line-through;
+		font-style: italic;
+	}
 	</style>
+	<script>
+	function onBtnAddTaskClick(){
+		var task = document.getElementById("txtTask").value
+		  ,	ulTaskList = document.getElementById("ulTaskList")
+          , newTaskNode = document.createElement("li");
+        newTaskNode.innerHTML = task;
+        newTaskNode.addEventListener("click",onTaskItemClick);
+        ulTaskList.appendChild(newTaskNode);
+	}
+	function init(){
+		document.getElementById("btnAddTask").addEventListener("click",onBtnAddTaskClick);
+		var taskNodes = document.getElementById("ulTaskList").children;
+		for(var i=0;i<taskNodes.length;i++)
+			taskNodes[i].addEventListener("click",onTaskItemClick);
+	}
+
+	function onTaskItemClick(){
+		if (this.classList.contains("completed")){
+			this.classList.remove("completed");
+		} else {
+			this.classList.add("completed");
+		}
+	}
+	//window.onload = init;
+	window.addEventListener("DOMContentLoaded",init);
+	</script>
 </head>
 <body>
 	<h1>Task Manager</h1>
 	<div id="content">
 		<span>Task :</span>
 		<input type="text" name="" id="txtTask">
-		<input type="button" value="Add Task" id="btnAddTask">
+		<input type="button" value="Add Task"  id="btnAddTask" >
 		<input type="button" value="Remove Completed" id="btnRemoveCompleted">
 		<ul id="ulTaskList">
 			<li>Task - 1</li>
