@@ -33,9 +33,16 @@
 		function onBtnRemoveCompltedClick(){
 			var taskNodes = document.getElementById("ulTaskList").children;
 				for(var i=taskNodes.length-1;i>= 0;i--)
-					if (taskNodes[i].classList.contains("completed"))
-						taskNodes[i].remove();
+					if (taskNodes[i].classList.contains("completed")){
+						var node = taskNodes[i];
+						fadeOut(node, (function(n){
+							return function(){
+								n.remove();
+							}
+						})(node));
+					};
 		}
+		
 		function onTaskItemClick(e){
 
 			if (e.srcElement.nodeName === "LI"){

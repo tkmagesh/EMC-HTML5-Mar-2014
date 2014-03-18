@@ -1,4 +1,4 @@
-function fadeOut(node){
+function fadeOut(node,callback){
    var opacity = 1;
    node.style.opacity = opacity;
 
@@ -9,6 +9,7 @@ function fadeOut(node){
          setTimeout(reduceOpacity,40);
       } else {
          node.style.opacity = opacity = 0;
+         if (typeof callback === "function") callback();
       }
    }
    reduceOpacity();
