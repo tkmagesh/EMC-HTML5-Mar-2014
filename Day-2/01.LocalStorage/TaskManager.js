@@ -35,6 +35,7 @@
 		}
 
 		function loadTasksFromStorage(){
+			document.getElementById("ulTaskList").innerHTML = "";
 			var tasks = taskStorage.getAllTasks();
 			for(var i=0;i<tasks.length;i++)
 				addTaskToList(tasks[i]);
@@ -72,4 +73,5 @@
 			
 		}
 		window.addEventListener("DOMContentLoaded",init);
+		window.addEventListener("storage",loadTasksFromStorage);
 	})();
