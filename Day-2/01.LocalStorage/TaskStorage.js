@@ -4,21 +4,24 @@ function getTaskStorage(){
 	var taskStorage = {
 		addTask : function (taskName){
 				var id = new Date().getTime().toString();
-				storage.setItem(id,taskName);
-				return {
+				var newTask = {
 					id : id,
-					name : taskName
+					name : taskName,
+					isCompleted : false
 				};
+				storage.setItem(id,JSON.stringify(newTask));
+				return newTask;
+		},
+		toggleCompletion : function(id){
+			var task = JSON.parse(storage.getItem(id));
+			task.isCompleted = !task.isCompleted;
+			storage.setItem(id,JSON.stringify(task));
 		},
 		getAllTasks : function(){
 				var tasks = [];
 				for(var i=0;i<storage.length;i++){
 					var id = storage.key(i);
-					var name = storage.getItem(id);
-					tasks.push({
-						id : id,
-						name : name
-					});
+					tasks.push(JSON.parse(storage.getItem(id)));
 				}
 				return tasks;
 		},

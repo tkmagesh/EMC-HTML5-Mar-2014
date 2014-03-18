@@ -11,6 +11,9 @@
 	          , newTaskNode = document.createElement("li");
 			newTaskNode.innerHTML = newTask.name;
 	        newTaskNode.setAttribute("task-id",newTask.id);
+	        if (newTask.isCompleted){
+	        	newTaskNode.classList.add("completed");
+	        }
 	        ulTaskList.appendChild(newTaskNode);
 		}
 
@@ -59,6 +62,7 @@
 		function onTaskItemClick(e){
 
 			if (e.srcElement.nodeName === "LI"){
+				taskStorage.toggleCompletion(e.srcElement.getAttribute("task-id"));
 				if (e.srcElement.classList.contains("completed")){
 					e.srcElement.classList.remove("completed");
 				} else {
