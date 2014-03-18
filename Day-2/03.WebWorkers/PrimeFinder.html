@@ -3,6 +3,46 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Prime Finder</title>
+	<script>
+	(function(){
+		window.addEventListener("DOMContentLoaded",init);
+		var worker = null;
+		function init(){
+			document.getElementById("btnFindPrimes").addEventListener("click",onBtnFindPrimesClick);
+			worker = new Worker("primeFinderWorker.js");
+			worker.addEventListener("message",onMessageReceivedFromWorker);
+		}
+		function onMessageReceivedFromWorker(msgEvt){
+			var data = msgEvt.data;
+			if (data.type === "completed"){
+				displayMessage(data.primeCount + " prime numbers are found!!");
+			} else if (data.type === "progress"){
+				document.getElementById("progress").value = data.percentCompleted;
+				document.getElementById("spanPrimeCount").innerHTML = data.primeCount;
+			}
+		}
+		function onBtnFindPrimesClick(){
+
+			var start = parseInt(document.getElementById("txtStart").value),
+				end = parseInt(document.getElementById("txtEnd").value),
+				message = {
+					start : start,
+					end : end,
+					type : "start"
+				};
+			reset();
+			worker.postMessage(message);
+		}
+		function reset(){
+			document.getElementById("progress").value = 0;
+			document.getElementById("divMessages").innerHTML = "";
+			document.getElementById("spanPrimeCount").innerHTML = "";
+		}
+		function displayMessage(msg){
+			document.getElementById("divMessages").innerHTML = msg;
+		}
+	})();
+	</script>
 </head>
 <body>
 	<span>Start :</span><input type="text" name="" id="txtStart"><span> End :</span>
