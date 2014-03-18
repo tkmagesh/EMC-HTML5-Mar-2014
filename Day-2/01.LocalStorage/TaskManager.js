@@ -1,5 +1,5 @@
 (function (){
-		
+		var taskStorage = getTaskStorage();
 		function onBtnAddTaskClick(){
 			var task = document.getElementById("txtTask").value;
 	        var newTask = taskStorage.addTask(task);
