@@ -1,0 +1,19 @@
+ul{
+	lis-style: none;
+	width: 400px;
+}
+li{
+	padding : 5px;
+	margin: 5px;
+	border : 1px solid grey;
+	background-color: #efefef;
+}
+.completed{
+	color : red;
+	border-color: red;
+	text-decoration: line-through;
+	font-style: italic;
+}
+#divCacheUpdate{
+	display : none;
+}
