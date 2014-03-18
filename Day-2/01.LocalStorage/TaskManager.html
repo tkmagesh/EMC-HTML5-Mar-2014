@@ -2,9 +2,46 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>Dummy HTML Page</title>
+	<title>Task Manager</title>
+	<style type="text/css">
+	h1{
+		border-top: 2px solid blue;
+		border-bottom: 2px solid blue;
+		background-color: lightblue;
+		padding: 20px 0px;
+	}
+	ul{
+		list-style: none;
+		width: 400px;
+	}
+	li{
+		padding : 5px;
+		margin: 5px;
+		border : 1px solid grey;
+		background-color: #efefef;
+	}
+	.completed{
+		color : red;
+		border-color: red;
+		text-decoration: line-through;
+		font-style: italic;
+	}
+	</style>
+	<script src="fadeOut.js"></script>
+	<script src="TaskStorage.js"></script>
+	<script src="TaskManager.js"></script>
 </head>
 <body>
-	
+	<h1>Task Manager</h1>
+	<div id="content">
+		<span>Task :</span>
+		<input type="text" name="" id="txtTask">
+		<input type="button" value="Add Task"  id="btnAddTask" >
+		<input type="button" value="Remove Completed" id="btnRemoveCompleted">
+		<ul id="ulTaskList">
+			
+		</ul>
+		<div id="divMessage"></div>
+	</div>
 </body>
 </html>
