@@ -9,8 +9,10 @@
 		
 		var socket = new WebSocket("ws://localhost:9091");
 		socket.addEventListener("message",onMsgFromServer);
-
-		document.getElementById("btnSend").addEventListener("click",onBtnSendClick);
+		
+		function init(){
+			document.getElementById("btnSend").addEventListener("click",onBtnSendClick);
+		}
 
 		function onBtnSendClick(){
 			var msg = document.getElementById("txtMessage").value;
