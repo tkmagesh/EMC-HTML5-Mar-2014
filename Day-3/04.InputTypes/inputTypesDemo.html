@@ -3,6 +3,13 @@
 <head>
 	<meta charset="UTF-8">
 	<title>New Input Types</title>
+	<script>
+		function isInputTypeSupported(type){
+		   var el = document.createElement("input");
+		   el.setAttribute("type",type);
+		   return el.type === type;
+		}
+	</script>
 </head>
 <body>
 	<form action="/">
@@ -24,5 +31,6 @@
 	<br>
 	<input type="submit">
 	</form>
+	<input type="abc">
 </body>
 </html>
